@@ -1,7 +1,30 @@
+using IdentityModel.Client;
 using BasicEcommerceWebApi.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
+using System.IdentityModel.Tokens.Jwt;
+
+//var tokenClient = new HttpClient();
+//var disco = await tokenClient.GetDiscoveryDocumentAsync("https://localhost:5001");
+//if (disco.IsError) throw new Exception(disco.Error);
+
+//var tokenResponse = await tokenClient.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
+//{
+//    Address = disco.TokenEndpoint,
+//    ClientId = "client",
+//    ClientSecret = "secret",
+//    Scope = "basicEcommerceWebApi"
+//});
+
+//if (tokenResponse.IsError) throw new Exception(tokenResponse.Error);
+//var tokenHandler=new JwtSecurityTokenHandler();
+//tokenHandler.
+//Console.WriteLine(tokenResponse);
+
+
+
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +41,15 @@ builder.Services.AddCors(options =>
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddIdentityServerAuthentication(options =>
+    {
+        options.Authority = "https://localhost:5001";
+        options.RequireHttpsMetadata = false;
+        options.ApiName = "basicEcommerceWebApi";
+        options.LegacyAudienceValidation = true;
+    });
 
 builder.Services.AddDbContext<InMemoryDbContext>(options => options.UseInMemoryDatabase("InMemoryDb"));
 
@@ -37,6 +69,8 @@ var app = builder.Build();
 app.UseHttpsRedirection();
 
 app.UseCors(MyAllowSpecificOrigins);
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

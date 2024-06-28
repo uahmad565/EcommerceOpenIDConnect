@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankOfDotnet.API", "BankOfDotnet.API\BankOfDotnet.API.csproj", "{C2F4F066-0C3E-4248-8D1A-7786EE062078}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankOfDotnet.API", "BankOfDotnet.API\BankOfDotnet.API.csproj", "{C2F4F066-0C3E-4248-8D1A-7786EE062078}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasicEcommerceWebApi", "BasicEcommerceWebApi\BasicEcommerceWebApi.csproj", "{E239051F-A1FF-4E0F-9030-11FF4615E8C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentitySvr", "IdentitySvr\IdentitySvr.csproj", "{6CF03C37-9063-42BD-961D-636711F12457}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{E239051F-A1FF-4E0F-9030-11FF4615E8C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E239051F-A1FF-4E0F-9030-11FF4615E8C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E239051F-A1FF-4E0F-9030-11FF4615E8C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CF03C37-9063-42BD-961D-636711F12457}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CF03C37-9063-42BD-961D-636711F12457}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CF03C37-9063-42BD-961D-636711F12457}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CF03C37-9063-42BD-961D-636711F12457}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

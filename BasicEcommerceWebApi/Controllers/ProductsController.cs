@@ -1,5 +1,6 @@
 ﻿using BasicEcommerceWebApi.Controllers.ControllerDtos;
 using BasicEcommerceWebApi.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography.X509Certificates;
@@ -8,6 +9,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace BasicEcommerceWebApi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase
@@ -44,7 +46,7 @@ namespace BasicEcommerceWebApi.Controllers
             {
                 return NotFound();
             }
-            return BadRequest(new { products = productsList.Select(x => MapEFModelHelper.MapProductResponse(x)), subCategories });
+            return Ok(new { products = productsList.Select(x => MapEFModelHelper.MapProductResponse(x)), subCategories });
         }
 
         // GET api/<ProductsController>/5
