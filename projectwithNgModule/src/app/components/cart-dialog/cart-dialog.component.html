@@ -1,0 +1,26 @@
+<button mat-icon-button class="close-button" [mat-dialog-close]="true">
+  <mat-icon class="close-icon" color="warn">close</mat-icon>
+</button>
+
+<h1 mat-dialog-title>Buy! {{ data.name }}</h1>
+<div mat-dialog-content>
+  <div class="cart-container">
+    <div class="cart-item" *ngFor="let item of cartService.cartItems">
+      <label>{{ item.product.name + " " }}</label>
+      <input
+        type="number"
+        [value]="item.quantity"
+        [(ngModel)]="item.quantity"
+      />
+      <button mat-icon-button class="close-button">
+        <mat-icon class="close-icon" color="warn">close</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button (click)="onCheckoutClick()" cdkFocusInitial>
+    CheckOut
+  </button>
+</div>

@@ -1,0 +1,10 @@
+<p>Dashboard</p>
+<button routerLink="/create">Create Product</button>
+<hr />
+<div class="categories-grid">
+  <a *ngFor="let category of categories" routerLink="{{ category.link }}">
+    <app-card>
+      <div>{{ category.name }}</div>
+    </app-card>
+  </a>
+</div>

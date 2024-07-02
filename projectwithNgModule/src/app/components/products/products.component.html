@@ -1,0 +1,45 @@
+<h4 *ngIf="products.length > 0">Products</h4>
+<div class="products-container">
+  <ng-container *ngFor="let product of products">
+    <!-- <a (click)="routeToEditProduct(product)" routerLink="/edit/{{ product.productId }}"> -->
+    <a (click)="routeToEditProduct(product)">
+      <app-card>
+        <div class="cart-button">
+          <button (click)="onAddToCartBtn($event, product)">Add to Cart</button>
+        </div>
+        <table>
+          <tr>
+            <td>Name:</td>
+            <td>{{ product.name }}</td>
+          </tr>
+          <tr>
+            <td>Price:</td>
+            <td>{{ product.price }}$</td>
+          </tr>
+          <tr>
+            <td>Description:</td>
+            <td>{{ product.description }}</td>
+          </tr>
+          <tr>
+            <td>Category:</td>
+            <td>{{ product.categoryName }}</td>
+          </tr>
+        </table>
+      </app-card>
+    </a>
+  </ng-container>
+</div>
+<h4 *ngIf="subCategories.length > 0">Categories</h4>
+<div class="products-container">
+  <ng-container *ngFor="let category of subCategories">
+    <app-card>
+      <table>
+        <tr>
+          {{
+            category
+          }}
+        </tr>
+      </table>
+    </app-card>
+  </ng-container>
+</div>
