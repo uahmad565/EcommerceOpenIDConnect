@@ -6,11 +6,21 @@ namespace IdentitySvr
 {
     public class Config
     {
-        public static IEnumerable<ApiScope> GetAllApiResources()
+        public static IEnumerable<ApiResource> GetAllApiResources()
+        {
+            return new List<ApiResource>
+            {
+                new ApiResource(name:"basicEcommerceWebApi",displayName:"Ecommerce API"),
+            };
+        }
+
+        public static IEnumerable<ApiScope> GetAllApiScopes()
         {
             return new List<ApiScope>
             {
                 new ApiScope(name:"basicEcommerceWebApi",displayName:"Ecommerce API"),
+                //new ApiScope(name:"basicEcommerceWebApi",displayName:"Ecommerce API"),
+
             };
         }
 

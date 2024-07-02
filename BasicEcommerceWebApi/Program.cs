@@ -45,7 +45,7 @@ builder.Services.AddControllers();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddIdentityServerAuthentication(options =>
     {
-        options.Authority = "https://localhost:5001";
+        options.Authority = "https://localhost:5007";
         options.RequireHttpsMetadata = false;
         options.ApiName = "basicEcommerceWebApi";
         options.LegacyAudienceValidation = true;

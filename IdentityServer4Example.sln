@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankOfDotnet.API", "BankOfD
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasicEcommerceWebApi", "BasicEcommerceWebApi\BasicEcommerceWebApi.csproj", "{E239051F-A1FF-4E0F-9030-11FF4615E8C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentitySvr", "IdentitySvr\IdentitySvr.csproj", "{6CF03C37-9063-42BD-961D-636711F12457}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServerAspNetIdentity", "..\IdentityServer Templates Test\IdentityServerAspNetIdentity\IdentityServerAspNetIdentity.csproj", "{B80DF3CD-2C1F-43F5-884F-6B0DF1484B29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{E239051F-A1FF-4E0F-9030-11FF4615E8C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E239051F-A1FF-4E0F-9030-11FF4615E8C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E239051F-A1FF-4E0F-9030-11FF4615E8C8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6CF03C37-9063-42BD-961D-636711F12457}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6CF03C37-9063-42BD-961D-636711F12457}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6CF03C37-9063-42BD-961D-636711F12457}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6CF03C37-9063-42BD-961D-636711F12457}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B80DF3CD-2C1F-43F5-884F-6B0DF1484B29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B80DF3CD-2C1F-43F5-884F-6B0DF1484B29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B80DF3CD-2C1F-43F5-884F-6B0DF1484B29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B80DF3CD-2C1F-43F5-884F-6B0DF1484B29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,7 +9,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace BasicEcommerceWebApi.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase
@@ -22,6 +22,7 @@ namespace BasicEcommerceWebApi.Controllers
 
         }
         // GET: api/<ProductsController>
+        [Authorize(Roles ="Admin")]
         [HttpGet]
         public IActionResult Get()
         {
