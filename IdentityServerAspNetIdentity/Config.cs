@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
+using IdentityServer4;
 using IdentityServer4.Models;
 using System.Collections.Generic;
 
@@ -13,8 +14,8 @@ namespace IdentityServerAspNetIdentity
         public static IEnumerable<IdentityResource> IdentityResources =>
                    new IdentityResource[]
                    {
-                new IdentityResources.OpenId(),
-                new IdentityResources.Profile(),
+                        new IdentityResources.OpenId(),
+                        new IdentityResources.Profile(),
                    };
 
         public static IEnumerable<ApiScope> ApiScopes =>
@@ -43,28 +44,36 @@ namespace IdentityServerAspNetIdentity
                     AllowedScopes = { "scope1" }
                 },
 
-                // interactive client using code flow + pkce
+                // interactive ASP.NET Core MVC client
                 new Client
                 {
-                    ClientId = "interactive",
-                    ClientSecrets = { new Secret("49C1A7E1-0C79-4A89-A3D6-A37998FB86B0".Sha256()) },
+                    ClientId = "mvc",
+                    ClientSecrets = { new Secret("secret".Sha256()) },
 
                     AllowedGrantTypes = GrantTypes.Code,
 
-                    RedirectUris = { "https://localhost:44300/signin-oidc" },
-                    FrontChannelLogoutUri = "https://localhost:44300/signout-oidc",
-                    PostLogoutRedirectUris = { "https://localhost:44300/signout-callback-oidc" },
+                    // where to redirect to after login
+                    RedirectUris = { "https://localhost:7127/signin-oidc" },
+
+                    // where to redirect to after logout
+                    PostLogoutRedirectUris = { "https://localhost:7127/signout-callback-oidc" },
 
                     AllowOfflineAccess = true,
-                    AllowedScopes = { "openid", "profile", "scope2" }
+                    AllowedScopes = new List<string>
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "basicEcommerceWebApi"
+                    }
                 },
 
+                //WebApi Client
                 new Client
                 {
                     ClientId="ecommerce_webapi_user",
                     AllowedGrantTypes= GrantTypes.ResourceOwnerPassword,
                     ClientSecrets = {new Secret("secret".Sha256())},
-                    AllowedScopes = { "scope1", "openid", "profile", "write" },
+                    AllowedScopes = { "openid" ,"scope1", "profile", "write" },
                     AccessTokenLifetime = 3600,
                 }
 
