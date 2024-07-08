@@ -17,6 +17,10 @@ import { CartService } from './Services/cart.service';
 import { CartDialogComponent } from './components/cart-dialog/cart-dialog.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MaterialModule } from './material-module';
+import { SigninRedirectCallbackComponent } from './signin-redirect-callback/signin-redirect-callback.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { SignoutRedirectCallbackComponent } from './signout-redirect-callback/signout-redirect-callback.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +30,10 @@ import { MaterialModule } from './material-module';
     ProductsComponent,
     ProductFormComponent,
     CartDialogComponent,
+    SigninRedirectCallbackComponent,
+    NotFoundComponent,
+    SignoutRedirectCallbackComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule, //<router-outlet/>

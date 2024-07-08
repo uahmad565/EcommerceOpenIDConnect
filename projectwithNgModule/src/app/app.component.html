@@ -1,5 +1,14 @@
-<button mat-raised-button (click)="openDialog()">
-  {{ cartService.cartItems.length }}Cart
-</button>
-<h1>Main Page</h1>
+<mat-toolbar color="primary">
+  <span>My App</span>
+  <span class="spacer"></span>
+  <button mat-button>Home</button>
+  <button mat-button>About</button>
+  <button *ngIf="!userAuthenticated" mat-button (click)="login()">Login</button>
+  <button *ngIf="userAuthenticated" mat-button (click)="logout()">Logout</button>
+  <button mat-raised-button (click)="openDialog()">
+    {{ cartService.cartItems.length }}Cart
+  </button>
+</mat-toolbar>
+
+
 <router-outlet />

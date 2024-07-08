@@ -1,5 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Authentication
 
+<a asp-controller="Home" asp-action="Logout">LogOut</a>
+
 <h2>Claims</h2>
 
 <dl>
@@ -13,19 +15,15 @@
 <h2>Properties</h2>
 
 <dl>
-    @if (User.Identities.FirstOrDefault().IsAuthenticated)
+    
+    @foreach (var prop in (await Context.AuthenticateAsync()).Properties?.Items)
     {
-        @foreach (var prop in (await Context.AuthenticateAsync()).Properties?.Items)
-        {
-            <dt>@prop.Key</dt>
-            <dd>@prop.Value</dd>
-        }
+        <dt>@prop.Key</dt>
+        <dd>@prop.Value</dd>
+    }
 
-            <a asp-controller="Home" asp-action="Logout">LogOut</a>
+    
             
-    }
-    else
-    {
-        <a>Please SignIn </a>
-    }
 </dl>
+
+<a asp-controller="Products" asp-action="Index">Get All Procuts</a>

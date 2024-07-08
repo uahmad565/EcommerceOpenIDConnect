@@ -75,8 +75,29 @@ namespace IdentityServerAspNetIdentity
                     ClientSecrets = {new Secret("secret".Sha256())},
                     AllowedScopes = { "openid" ,"scope1", "profile", "write" },
                     AccessTokenLifetime = 3600,
-                }
+                },
 
+                //Angular Client
+                new Client
+                {
+                    ClientName = "Angular-Client",
+                    ClientId = "angular-client",
+                    AllowedGrantTypes = GrantTypes.Code,
+                    RedirectUris = new List<string>{ "http://localhost:4200/signin-callback", "http://localhost:4200/assets/silent-callback.html" },
+                    RequirePkce = true,
+                    AllowAccessTokensViaBrowser = true,
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "basicEcommerceWebApi"
+                    },
+                    AllowedCorsOrigins = { "http://localhost:4200" },
+                    RequireClientSecret = false,
+                    PostLogoutRedirectUris = new List<string> { "http://localhost:4200/signout-callback" },
+                    RequireConsent = false,
+                    AccessTokenLifetime = 600
+                }
             };
     }
 }

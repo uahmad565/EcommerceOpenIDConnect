@@ -2,6 +2,10 @@ import { Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
+import { SigninRedirectCallbackComponent } from './signin-redirect-callback/signin-redirect-callback.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { SignoutRedirectCallbackComponent } from './signout-redirect-callback/signout-redirect-callback.component';
+import { HomeComponent } from './home/home.component';
 
 export const routes: Routes = [
   {
@@ -20,8 +24,25 @@ export const routes: Routes = [
     path: 'edit/:id',
     component: ProductFormComponent,
   },
-  // {
-  //   path:"**",
-  //   redirectTo:"categories"
-  // }
+  {
+    path: '',
+    component: HomeComponent
+  },
+  {
+    path: '404',
+    component: NotFoundComponent,
+  },
+  {
+    path: 'signin-callback',
+    component: SigninRedirectCallbackComponent
+  },
+  { 
+    path: 'signout-callback', 
+    component: SignoutRedirectCallbackComponent 
+  },
+  {
+    path: "**",
+    redirectTo: "/404",
+
+  }
 ];
