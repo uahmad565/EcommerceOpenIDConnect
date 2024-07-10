@@ -27,18 +27,13 @@ export class ProductsComponent implements OnInit {
 
         this.apiService
           .getProductByCategory(params["categoryType"])
-          .then((response) => {
-            return response.json();
-          })
-          .then((data) => {
+          .subscribe((data:any)=>{
             console.log(data);
             this.products = data.products;
             this.subCategories = data.subCategories;
-          })
-          .catch((error) => {
-            console.log('error occured oho', error);
+          },error=>{
+            console.error('error occured oho', error);
           });
-
       },
       (error) => {
         console.log(error);

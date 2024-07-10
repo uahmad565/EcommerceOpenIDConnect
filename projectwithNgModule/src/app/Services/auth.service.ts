@@ -9,7 +9,7 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class AuthService {
 
-  private _userManager: any;
+  private _userManager: UserManager;
   public _user: User | null = null;
 
   //We need to do one additional thing. As soon as the user’s status changes, 
@@ -30,9 +30,9 @@ export class AuthService {
 
   constructor(@Inject(PLATFORM_ID) private platformId: any) {
     console.log("auth service constructor called..q");
-    if (isPlatformBrowser(this.platformId)) {
+    // if (isPlatformBrowser(this.platformId)) {
       this._userManager = new UserManager(this.idpSettings);
-    }
+    // }
 
   }
 
@@ -76,5 +76,12 @@ export class AuthService {
   public finishLogout = () => {
     this._user = null;
     return this._userManager.signoutRedirectCallback();
+  }
+
+  public getAccessToken = (): Promise<string | null> => {
+    return this._userManager.getUser()
+      .then((user) => {
+         return !!user && !user.expired ? user.access_token : null;
+    })
   }
 }

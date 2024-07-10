@@ -10,7 +10,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CardComponent } from './components/card/card.component';
 import { CommonModule } from '@angular/common';
 import { ProductsComponent } from './components/products/products.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CartService } from './Services/cart.service';
@@ -21,6 +21,7 @@ import { SigninRedirectCallbackComponent } from './signin-redirect-callback/sign
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SignoutRedirectCallbackComponent } from './signout-redirect-callback/signout-redirect-callback.component';
 import { HomeComponent } from './home/home.component';
+import { AuthInterceptorService } from './Services/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,9 @@ import { HomeComponent } from './home/home.component';
     FormsModule, //ngModel two way binding
     MaterialModule,
   ],
-  providers: [provideClientHydration(), provideAnimationsAsync(), CartService],
+  providers: [provideClientHydration(), provideAnimationsAsync(), 
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -96,7 +96,7 @@ namespace IdentityServerAspNetIdentity
                     RequireClientSecret = false,
                     PostLogoutRedirectUris = new List<string> { "http://localhost:4200/signout-callback" },
                     RequireConsent = false,
-                    AccessTokenLifetime = 600
+                    AccessTokenLifetime = 6000
                 }
             };
     }
