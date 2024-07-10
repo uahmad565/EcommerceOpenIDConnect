@@ -21,12 +21,16 @@ export class ApiService {
     return this.http.get<Product>(`${DOTNET_BASE_API}/api/products/${id}`);
   }
 
-
   postProduct(formData: Product) {
     return this.http.post(DOTNET_BASE_API + '/api/products', formData);
   }
 
   putProduct(id: String, formData: Product) {
     return this.http.put(DOTNET_BASE_API + '/api/products/' + id, formData);
+  }
+
+  //privacy Claims API
+  getUserClaims(){
+    return this.http.get<any>(`${DOTNET_BASE_API}/api/claims/Privacy`);
   }
 }

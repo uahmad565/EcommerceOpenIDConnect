@@ -22,6 +22,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SignoutRedirectCallbackComponent } from './signout-redirect-callback/signout-redirect-callback.component';
 import { HomeComponent } from './home/home.component';
 import { AuthInterceptorService } from './Services/auth-interceptor.service';
+import { PrivacyComponent } from './components/privacy/privacy.component';
+import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { AuthInterceptorService } from './Services/auth-interceptor.service';
     NotFoundComponent,
     SignoutRedirectCallbackComponent,
     HomeComponent,
+    PrivacyComponent,
+    UnauthorizedComponent,
   ],
   imports: [
     BrowserModule, //<router-outlet/>

@@ -24,22 +24,27 @@ export class AuthService {
       redirect_uri: `${Constants.clientRoot}/signin-callback`,
       scope: "openid profile basicEcommerceWebApi",
       response_type: "code",
-      post_logout_redirect_uri: `${Constants.clientRoot}/signout-callback`
+      post_logout_redirect_uri: `${Constants.clientRoot}/signout-callback`,
+      automaticSilentRenew: true,
+      silent_redirect_uri: `${Constants.clientRoot}/assets/silent-callback.html`
     }
   }
 
   constructor(@Inject(PLATFORM_ID) private platformId: any) {
     console.log("auth service constructor called..q");
     // if (isPlatformBrowser(this.platformId)) {
-      this._userManager = new UserManager(this.idpSettings);
+    this._userManager = new UserManager(this.idpSettings);
     // }
+    this._userManager.events.addAccessTokenExpired(_ => {
+      this._loginChangedSubject.next(false);
+    });
 
   }
 
 
   public isAuthenticated = (): Promise<boolean> => {
     return this._userManager.getUser() //get User From local storage
-      .then((user: User) => {
+      .then((user) => {
         if (this._user !== user) {
           this._loginChangedSubject.next(this.checkUser(user))
         }
@@ -75,13 +80,14 @@ export class AuthService {
 
   public finishLogout = () => {
     this._user = null;
+    this._loginChangedSubject.next(false);
     return this._userManager.signoutRedirectCallback();
   }
 
   public getAccessToken = (): Promise<string | null> => {
     return this._userManager.getUser()
       .then((user) => {
-         return !!user && !user.expired ? user.access_token : null;
-    })
+        return !!user && !user.expired ? user.access_token : null;
+      })
   }
 }

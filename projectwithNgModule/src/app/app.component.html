@@ -1,11 +1,16 @@
 <mat-toolbar color="primary">
   <span>My App</span>
   <span class="spacer"></span>
-  <button mat-button>Home</button>
+  <button mat-button [routerLink]="['/']">Home</button>
   <button mat-button>About</button>
+
+
+    <a *ngIf="userAuthenticated" class="nav-link" [routerLink]="['/privacy']" routerLinkActive="active" 
+      [routerLinkActiveOptions]="{exact: true}"> Privacy </a>
+
   <button *ngIf="!userAuthenticated" mat-button (click)="login()">Login</button>
   <button *ngIf="userAuthenticated" mat-button (click)="logout()">Logout</button>
-  <button mat-raised-button (click)="openDialog()">
+  <button *ngIf="userAuthenticated" mat-raised-button (click)="openDialog()">
     {{ cartService.cartItems.length }}Cart
   </button>
 </mat-toolbar>

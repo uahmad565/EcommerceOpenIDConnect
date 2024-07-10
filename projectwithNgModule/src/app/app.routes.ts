@@ -6,6 +6,8 @@ import { SigninRedirectCallbackComponent } from './signin-redirect-callback/sign
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SignoutRedirectCallbackComponent } from './signout-redirect-callback/signout-redirect-callback.component';
 import { HomeComponent } from './home/home.component';
+import { PrivacyComponent } from './components/privacy/privacy.component';
+import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
 
 export const routes: Routes = [
   {
@@ -25,6 +27,14 @@ export const routes: Routes = [
     component: ProductFormComponent,
   },
   {
+    path: 'privacy',
+    component: PrivacyComponent
+  },
+  {
+    path: 'unauthorized',
+    component: UnauthorizedComponent
+  },
+  {
     path: '',
     component: HomeComponent
   },
@@ -36,9 +46,9 @@ export const routes: Routes = [
     path: 'signin-callback',
     component: SigninRedirectCallbackComponent
   },
-  { 
-    path: 'signout-callback', 
-    component: SignoutRedirectCallbackComponent 
+  {
+    path: 'signout-callback',
+    component: SignoutRedirectCallbackComponent
   },
   {
     path: "**",
