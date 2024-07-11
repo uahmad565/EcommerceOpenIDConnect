@@ -1,8 +1,9 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
-import { UserManager, User, UserManagerSettings } from 'oidc-client';
+import { UserManager, User, UserManagerSettings, SessionMonitor, CheckSessionIFrameCtor, CheckSessionIFrame } from 'oidc-client';
 import { Constants } from '../shared/constants';
 import { Subject } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -26,15 +27,31 @@ export class AuthService {
       response_type: "code",
       post_logout_redirect_uri: `${Constants.clientRoot}/signout-callback`,
       automaticSilentRenew: true,
-      silent_redirect_uri: `${Constants.clientRoot}/assets/silent-callback.html`
+      silent_redirect_uri: `${Constants.clientRoot}/assets/silent-callback.html`,
+      monitorSession: true  // Enable session monitoring
     }
   }
 
-  constructor(@Inject(PLATFORM_ID) private platformId: any) {
+  constructor(@Inject(PLATFORM_ID) private platformId: any,
+  private router: Router) {
     console.log("auth service constructor called..q");
     // if (isPlatformBrowser(this.platformId)) {
     this._userManager = new UserManager(this.idpSettings);
     // }
+    
+    this._userManager.events.addUserSignedOut(()=> {
+      debugger;
+      this._user = null;
+      this._loginChangedSubject.next(false);
+      this.handleLogout();
+      console.log("user signed out");
+  });
+
+    this._userManager.events.addUserLoaded(user => {
+      debugger;
+      console.log('NewCode: User loaded', user);
+    });
+
     this._userManager.events.addAccessTokenExpired(_ => {
       this._loginChangedSubject.next(false);
     });
@@ -89,5 +106,12 @@ export class AuthService {
       .then((user) => {
         return !!user && !user.expired ? user.access_token : null;
       })
+  }
+
+  handleLogout() {
+    this._userManager.removeUser().then(() => {
+      console.log('User session cleared');
+      this.router.navigate(['/']);
+    });
   }
 }

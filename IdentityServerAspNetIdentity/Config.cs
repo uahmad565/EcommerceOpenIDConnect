@@ -60,6 +60,10 @@ namespace IdentityServerAspNetIdentity
                     // where to redirect to after logout
                     PostLogoutRedirectUris = { "https://localhost:7127/signout-callback-oidc" },
 
+                    //When Identity Server SignOut IdentityServer Cookies Removed. But Client Cookies that have copies IdentityServer also removed
+                    FrontChannelLogoutUri = "https://localhost:7127/signout-oidc",
+                    FrontChannelLogoutSessionRequired = true,
+
                     AllowOfflineAccess = true,
                     AllowedScopes = new List<string>
                     {
