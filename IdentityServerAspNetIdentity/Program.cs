@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
+using IdentityServerAspNetIdentity.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -55,6 +56,8 @@ namespace IdentityServerAspNetIdentity
                     return 0;
                 }
 
+                //migrating Config.cs InMemory resources to IdentityServer Database
+                host.MigrateDatabase();
                 Log.Information("Starting host...");
                 host.Run();
                 return 0;
